@@ -11,35 +11,26 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get("/", (req, res) => {
+ const message = "キラーの情報を検索しよう!!";
+  res.render('showdbd', {mes:message});
+});
+
+
+
+app.post("/insert", (req, res) => {
     //console.log(req.query.pop);    // ①
     let desc = "";
     if( req.query.desc ) desc = " desc";
-    let sql = "select id, , 人口 from example order by 人口" + desc + " limit " + req.query.pop + ";";
+    let sql = `
+SELECT killer.id,killer.name,test.use,test.kill FROM killer INNER JOIN test ON killer.id = test.id;
+`
     //console.log(sql);    // ②
     db.serialize( () => {
         db.all(sql, (error, data) => {
             if( error ) {
                 res.render('showdbd', {mes:"エラーです"});
             }
-            //console.log(data);    // ③
-            res.render('selectdbd', {data:data});
-        })
-    })
-})
-
-
-app.get("/insert", (req, res) => {
-    //console.log(req.query.pop);    // ①
-    let desc = "";
-    if( req.query.desc ) desc = " desc";
-    let sql = "select id, , 人口 from example order by 人口" + desc + " limit " + req.query.pop + ";";
-    //console.log(sql);    // ②
-    db.serialize( () => {
-        db.all(sql, (error, data) => {
-            if( error ) {
-                res.render('showdbd', {mes:"エラーです"});
-            }
-            //console.log(data);    // ③
+            console.log(data);    // ③
             res.render('selectdbd', {data:data});
         })
     })
@@ -49,4 +40,4 @@ app.use(function(req, res, next) {
   res.status(404).send('ページが見つかりません');
 });
 
-app.listen(8080, () => console.log("Example app listening on port 8080!"));
+app.listen(80, () => console.log("Example app listening on port 8080!"));
