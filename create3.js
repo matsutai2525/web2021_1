@@ -2,10 +2,9 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('dbd.db');
 
 let schema = `
-create table test(
+create table age(
   id integer primary key,
-  use real,
-  kill real
+  age text
 );
 `
 

@@ -22,7 +22,7 @@ app.get("/itiran", (req, res) => {
     //console.log(req.query.pop);    // ①
     let desc = "";
     let sql = `
-SELECT killer.id,killer.name,test.use,test.kill FROM killer INNER JOIN test ON killer.id = test.id;
+SELECT killer.id,killer.name,killer.use,killer.kill,killer.age_id FROM killer INNER JOIN age ON killer.age_id = age.id;
 `
     console.log(sql);    // ②
     db.serialize( () => {
@@ -38,7 +38,9 @@ SELECT killer.id,killer.name,test.use,test.kill FROM killer INNER JOIN test ON k
 
 app.get("/insert", (req, res) => {
     //console.log(req.query.pop);    // ①
-    let sql = "INSERT INTO ";
+    let sql = `
+      insert into killer ("name","use","kill","age_id") values ("` + req.body.name + `",` + req.body.use + `,` + req.body.kill + `,` + req.body.age_id + `) ;
+      `
     console.log(sql);
     db.serialize( () => {
         db.all(sql, (error, data) => {
@@ -47,7 +49,7 @@ app.get("/insert", (req, res) => {
                 res.render('showdbd', {mes:"エラーです"});
             }
             //console.log(data);    // ③
-            res.render('selectdbd', {data:data});
+            res.render('/public/insert.html', {data:data});
         })
     })
 })

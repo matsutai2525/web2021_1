@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('dbd.db');
 
 let sql = `
-SELECT killer.id,killer.name,test.use,test.kill FROM killer INNER JOIN test ON killer.id = test.id;
+SELECT killer.id,killer.name,killer.use,killer.kill,killer.age_id FROM killer INNER JOIN age ON killer.age_id = age.id;
 `
 
 db.serialize( () => {

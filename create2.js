@@ -4,7 +4,10 @@ const db = new sqlite3.Database('dbd.db');
 let schema = `
 create table killer(
   id integer primary key,
-  name text
+  name text,
+  use integer,
+  kill integer,
+  age_id integer
 );
 `
 
