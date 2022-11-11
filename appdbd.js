@@ -36,7 +36,21 @@ SELECT killer.id,killer.name,test.use,test.kill FROM killer INNER JOIN test ON k
     })
 })
 
-
+app.get("/insert", (req, res) => {
+    //console.log(req.query.pop);    // ①
+    let sql = "INSERT INTO ";
+    console.log(sql);
+    db.serialize( () => {
+        db.all(sql, (error, data) => {
+          console.log(error);
+            if( error ) {
+                res.render('showdbd', {mes:"エラーです"});
+            }
+            //console.log(data);    // ③
+            res.render('selectdbd', {data:data});
+        })
+    })
+})
 
 app.use(function(req, res, next) {
   res.status(404).send('ページが見つかりません');
