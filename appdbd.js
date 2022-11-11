@@ -49,7 +49,7 @@ app.get("/insert", (req, res) => {
                 res.render('showdbd', {mes:"エラーです"});
             }
             //console.log(data);    // ③
-            res.render('/public/insert.html', {data:data});
+            res.render('selectdbd', {data:data});
         })
     })
 })
