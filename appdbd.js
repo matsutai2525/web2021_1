@@ -20,13 +20,12 @@ app.get("/", (req, res) => {
 
 app.get("/itiran", (req, res) => {
     //console.log(req.query.pop);    // ①
-    let desc = "";
-    let sql = `
-SELECT killer.id,killer.name,killer.use,killer.kill,killer.age_id FROM killer INNER JOIN age ON killer.age_id = age.id;
-`
-    console.log(sql);    // ②
+
+    //console.log(sql);    // ②
     db.serialize( () => {
-        db.all(sql, (error, data) => {
+        db.all(`
+SELECT killer.id,killer.name,killer.use,killer.kill,age.age FROM killer INNER JOIN age ON killer.age_id = age.id;
+`, (error, data) => {
             if( error ) {
                 res.render('showdbd', {mes:"エラーです"});
             }
