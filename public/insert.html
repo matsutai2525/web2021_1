@@ -7,18 +7,18 @@
 <body>
   <h2>キラー登録</h2>
 
-  <from action="/insert">
+  <from action="/insert" method="post">
 
     
-    <p>キラーの名前:<input type="killer" name="name"></p>
-    <p>キラーの使用率:<input type="killer" name="use"></p>
-    <p>キラーの殺傷率:<input type="killer" name="kill"></p>
+    <p>キラーの名前:<input type="text" name="name"></p>
+    <p>キラーの使用率:<input type="number" name="use"></p>
+    <p>キラーの殺傷率:<input type="number" name="kill"></p>
     
     <option value=""></option>
   <form method="post">
 	  <div>
 		  <label for="com">追加年:</label>
-		  <select name="cid">
+		  <select name="aid">
 		  <option value="">選択してください</option>
 		  <option value="1">2016年</option>
 		  <option value="2">2017年</option>
