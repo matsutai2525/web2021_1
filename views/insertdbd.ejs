@@ -2,10 +2,42 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>insert after</title>
+  <title>追加ページ</title>
+  <style>
+  body {
+    font-family:serif;
+  </style>
 </head>
 <body>
-  <h2><%= mes %></h2>
-  <a href="/top">一覧表を表示</a><br>
+  <h2>追加ページ</h2>
+  <form action="/insert">
+    <label for="mane">キラーの名前：</label>
+   <input type="text" name="name"></p>
+    <br>
+     <label for="use">キラーの使用率：</label>
+   <input type="number" name="use"></p>
+    <br>
+     <label for="kill">キラーの殺傷率：</label>
+   <input type="number" name="kill"></p>
+    
+    <option value=""></option>
+    <form method="post">
+	    <div>
+		    <label for="com">追加年：</label>
+		    <select name="aid">
+		      <option value="">選択してください</option>
+          <% for( let row of data ) { %>
+          <option value="<%= row.id %>">
+            <%= row.name %>
+            
+          </option>
+          <% } %>
+		    </select>
+	    </div>
+      <br>
+      <input type="submit" value="追加">
+      <br>
+      <a href="/">戻る</a><br>
+    </form>
 </body>
 </html>
