@@ -37,7 +37,7 @@ SELECT killer.id,killer.name,killer.use,killer.kill,age.age FROM killer INNER JO
 
 app.get("/insert", (req, res) => {
     console.log(req.query);    // ①
-    let sql = "insert into killer (name,use,kill,age_id) values (" + req.query.name + "," + req.query.use + "," + req.query.kill + req.query.aid + "," + ");"
+    let sql = "insert into killer (name,use,kill,age_id) values (" + `"`+ req.query.name + `"`+ "," + req.query.use + "," + req.query.kill + req.query.aid + ");";
       
     console.log(sql);
     db.serialize( () => {
@@ -47,10 +47,24 @@ app.get("/insert", (req, res) => {
                 res.render('showdbd', {mes:"エラーです"});
             }
             //console.log(data);    // ③
+            res.render('insertdbd', {data:data});
+        })
+    })
+})
+
+app.get("/top", (req, res) => {
+  console.log(req.query)
+    db.serialize( () => {
+        db.all("SELECT killer.id,killer.name,killer.use,killer.kill,age.age FROM killer INNER JOIN age ON killer.age_id = age.id;", (error, data) => {
+            if( error ) {
+                res.render('error', {mes:"最初からやり直してください"});
+            }
+          //console.log(data);
             res.render('selectdbd', {data:data});
         })
     })
 })
+
 
 app.use(function(req, res, next) {
   res.status(404).send('ページが見つかりません');
