@@ -3,10 +3,6 @@
 <head>
   <meta charset="utf-8">
   <title>追加ページ</title>
-  <style>
-  body {
-    font-family:serif;
-  </style>
 </head>
 <body>
   <h2>追加ページ</h2>
@@ -15,10 +11,10 @@
    <input type="text" name="name"></p>
     <br>
      <label for="use">キラーの使用率：</label>
-   <input type="number" name="use"></p>
+   <input type="number" step="0.01" name="use"></p>
     <br>
      <label for="kill">キラーの殺傷率：</label>
-   <input type="number" name="kill"></p>
+   <input type="number" step="0.01" name="kill"></p>
     
     <option value=""></option>
     <form method="post">
@@ -28,7 +24,7 @@
 		      <option value="">選択してください</option>
           <% for( let row of data ) { %>
           <option value="<%= row.id %>">
-            <%= row.name %>
+            <%= row.age %>
             
           </option>
           <% } %>

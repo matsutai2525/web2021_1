@@ -65,6 +65,17 @@ app.get("/top", (req, res) => {
     })
 })
 
+app.get("/tosi", (req, res) => {
+    db.serialize( () => {
+        db.all("select id, age from age ;", (error, data) => {
+            if( error ) {
+                res.render('error', {mes:"エラー"});
+            }
+          //console.log(data);
+            res.render('insertdbd', {data:data});
+        })
+    })
+})
 
 app.use(function(req, res, next) {
   res.status(404).send('ページが見つかりません');
