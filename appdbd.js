@@ -37,7 +37,7 @@ SELECT killer.id,killer.name,killer.use,killer.kill,age.age FROM killer INNER JO
 
 app.get("/insert", (req, res) => {
     console.log(req.query);    // ①
-    let sql = "insert into killer (name,use,kill,age_id) values (" + `"`+ req.query.name + `"`+ "," + req.query.use + "," + req.query.kill + req.query.aid + ");";
+    let sql = "insert into killer (name,use,kill,age_id) values (" + `"`+ req.query.name + `"`+ "," + req.query.use + "," + req.query.kill + "," + req.query.aid + ");";
       
     console.log(sql);
     db.serialize( () => {
