@@ -8,19 +8,19 @@
   <h2>追加ページ</h2>
   <form action="/insert">
     <label for="mane">キラーの名前：</label>
-   <input type="text" name="name"></p>
+   <input type="text" name="name" id="mene"></p>
     <br>
      <label for="use">キラーの使用率：</label>
-   <input type="number" step="0.01" name="use"></p>
+   <input type="number" step="0.01" name="use" id="use"></p>
     <br>
      <label for="kill">キラーの殺傷率：</label>
-   <input type="number" step="0.01" name="kill"></p>
+   <input type="number" step="0.01" name="kill" id="kill"></p>
     
     <option value=""></option>
     <form method="post">
 	    <div>
 		    <label for="com">追加年：</label>
-		    <select name="aid">
+		    <select name ="aid">
 		      <option value="">選択してください</option>
           <% for( let row of data ) { %>
           <option value="<%= row.id %>">
@@ -31,9 +31,10 @@
 		    </select>
 	    </div>
       <br>
-      <input type="submit" value="追加">
-      <br>
       <a href="/">戻る</a><br>
+      <br>
+      
+      <input type="submit" value="追加">
     </form>
 </body>
 </html>
