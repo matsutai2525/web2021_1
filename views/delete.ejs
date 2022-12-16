@@ -1,0 +1,32 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>削除ページ</title>
+</head>
+<body>
+  <h2>削除ページ</h2>
+  <form action="/delete">
+    <option value=""></option>
+    <form method="post">
+	    <div>
+		    <label for="kill">削除項目</label>
+		    <select name="kill">
+		      <option value="">選択してください</option>
+          <% for( let row of data ) { console.log({row});%>
+          <option value="<%= row.id %>">
+            <%= row.name %>
+            <%= row.use %>
+            <%= row.kill %>
+              
+              </option>
+          <% } %>
+		    </select>
+	    </div>
+      <br>
+      <input type="submit" value="削除">
+      <br>
+      <a href="/top">一覧へ戻る</a><br>
+    </form>
+</body>
+</html>

@@ -77,6 +77,34 @@ app.get("/tosi", (req, res) => {
     })
 })
 
+app.get("/kesu", (req, res) => {
+    db.serialize( () => {
+        db.all("select id,name,use,kill from killer ;", (error, data) => {
+            if( error ) {
+                res.render('error', {mes:"最初からやり直してください"});
+            }
+          console.log({data});
+            res.render('delete', {data:data});
+        })
+    })
+})
+
+app.get("/delete", (req, res) => {
+  console.log(req.query);
+  let sql = "DELETE FROM killer WHERE id ="+ req.query.kill +";";
+  console.log(sql);
+  db.serialize( () => {
+    db.run( sql, (error, data) => {
+      console.log(error);
+      if(error) {
+        res.render('error', {mes:"最初からやり直してください"});
+      }
+    res.render('', {mes:"削除しました"});
+  });
+});
+//console.log(req.body);
+});
+
 app.use(function(req, res, next) {
   res.status(404).send('ページが見つかりません');
 });
