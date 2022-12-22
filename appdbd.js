@@ -44,10 +44,10 @@ app.get("/insert", (req, res) => {
         db.all(sql, (error, data) => {
           console.log(error);
             if( error ) {
-                res.render('showdbd', {mes:"エラーです"});
+                res.render('error', {mes:"エラーです"});
             }
             //console.log(data);    // ③
-            res.render('insertdbd', {data:data});
+            res.render('mess1', {data:data});
         })
     })
 })
@@ -99,11 +99,30 @@ app.get("/delete", (req, res) => {
       if(error) {
         res.render('error', {mes:"最初からやり直してください"});
       }
-    res.render('', {mes:"削除しました"});
+    res.render('mess2', {mes:"削除しました"});
   });
 });
 //console.log(req.body);
 });
+
+
+app.get("/usetop", (req, res) => {
+    //console.log(req.query.pop);    // ①
+    let desc = "";
+    if( req.query.desc ) desc = " desc";
+    let sql = "selectid,name,use,kill from killer order by use" + desc + " limit " + req.query.pop + ";";
+    //console.log(sql);    // ②
+    db.serialize( () => {
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('error', {mes:"エラーです"});
+            }
+            //console.log(data);    // ③
+            res.render('selectdbd', {data:data});
+        })
+    })
+})
+
 
 app.use(function(req, res, next) {
   res.status(404).send('ページが見つかりません');
