@@ -19,7 +19,8 @@
     
     <input type="submit" value="並び替え">
   </form>
-  
+  <a href="/usetop">使用率ランキング</a><br>
+  <a href="/killtop">殺傷率ランキング</a><br>
   <table>
     <table border="1">
     <tr>
@@ -29,7 +30,7 @@
       <td>殺傷率</td>
       <td>追加年</td>
     </tr>
-      <% for( let row of data ) { %>
+       <% for( let row of data ) { %>
         <tr>
             <td><%= row.id %></td>
             <td><%= row.name %></td>
