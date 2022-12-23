@@ -6,6 +6,20 @@
 </head>
 <body>
   <h2>dbd</h2>
+  <form action="/itiran">
+		  <label for="item">並び順：</label>
+	    <select name="item">
+	      <option value="use">使用率</option>
+		    <option value="kill">殺傷率</option>
+		  </select>
+    <input type="radio" name="desc" value="asc" checked>
+    <label for="desc">昇順</label>
+    <input type="radio" name="desc" value="desc">
+    <label for="desc">降順</label>
+    
+    <input type="submit" value="並び替え">
+  </form>
+  
   <table>
     <table border="1">
     <tr>

@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 
 
 
-app.get("/itiran", (req, res) => {
+/*app.get("/itiran", (req, res) => {
     //console.log(req.query.pop);    // ①
 
     //console.log(sql);    // ②
@@ -33,7 +33,7 @@ SELECT killer.id,killer.name,killer.use,killer.kill,age.age FROM killer INNER JO
             res.render('selectdbd', {data:data});
         })
     })
-})
+})*/
 
 app.get("/insert", (req, res) => {
     console.log(req.query);    // ①
@@ -106,18 +106,14 @@ app.get("/delete", (req, res) => {
 });
 
 
-app.get("/usetop", (req, res) => {
-    //console.log(req.query.pop);    // ①
-    let desc = "";
-    if( req.query.desc ) desc = " desc";
-    let sql = "selectid,name,use,kill from killer order by use" + desc + " limit " + req.query.pop + ";";
-    //console.log(sql);    // ②
+app.get("/itiran", (req, res) => {
+  console.log(req.query)
     db.serialize( () => {
-        db.all(sql, (error, data) => {
+        db.all("SELECT killer.id,killer.name,killer.use,killer.kill,age.age FROM killer INNER JOIN age ON killer.age_id = age.id order by " + req.query.item +" "+ req.query.desc +";", (error, data) => {
             if( error ) {
-                res.render('error', {mes:"エラーです"});
+                res.render('error', {mes:"最初からやり直してください"});
             }
-            //console.log(data);    // ③
+          //console.log(data);
             res.render('selectdbd', {data:data});
         })
     })
