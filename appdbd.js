@@ -55,7 +55,7 @@ app.get("/insert", (req, res) => {
 app.get("/top", (req, res) => {
   console.log(req.query)
     db.serialize( () => {
-        db.all("SELECT killer.id,killer.name,killer.use,killer.kill,age.age FROM killer INNER JOIN age ON killer.age_id = age.id;", (error, data) => {
+        db.all("SELECT killer.name,killer.use,killer.kill,age.age FROM killer INNER JOIN age ON killer.age_id = age.id;", (error, data) => {
             if( error ) {
                 res.render('error', {mes:"最初からやり直してください"});
             }
@@ -109,7 +109,7 @@ app.get("/delete", (req, res) => {
 app.get("/itiran", (req, res) => {
   console.log(req.query)
     db.serialize( () => {
-        db.all("SELECT killer.id,killer.name,killer.use,killer.kill,age.age FROM killer INNER JOIN age ON killer.age_id = age.id; order by " + req.query.item +" "+ req.query.desc +";", (error, data) => {
+        db.all("SELECT killer.name,killer.use,killer.kill,age.age FROM killer INNER JOIN age ON killer.age_id = age.id ORDER BY " + req.query.item +" "+ req.query.desc +";", (error, data) => {
             if( error ) {
                 res.render('error', {mes:"最初からやり直してください"});
             }

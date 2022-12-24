@@ -7,10 +7,11 @@
 <body>
   <h2>dbd</h2>
   <form action="/itiran">
-		  <label for="item">並び順：</label>
+		  <label for="item">並び順：</label>q
 	    <select name="item">
 	      <option value="use">使用率</option>
 		    <option value="kill">殺傷率</option>
+        <option value="age_id">追加年</option>
 		  </select>
     <input type="radio" name="desc" value="asc" checked>
     <label for="desc">昇順</label>
@@ -19,12 +20,10 @@
     
     <input type="submit" value="並び替え">
   </form>
-  <a href="/usetop">使用率ランキング</a><br>
-  <a href="/killtop">殺傷率ランキング</a><br>
   <table>
     <table border="1">
     <tr>
-      <td>ID</td>
+
       <td>名前</td>
       <td>使用率</td>
       <td>殺傷率</td>
@@ -32,7 +31,6 @@
     </tr>
        <% for( let row of data ) { %>
         <tr>
-            <td><%= row.id %></td>
             <td><%= row.name %></td>
             <td><%= row.use %></td>
             <td><%= row.kill %></td>
