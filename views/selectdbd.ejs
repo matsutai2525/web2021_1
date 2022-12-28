@@ -6,6 +6,9 @@
 </head>
 <body>
   <h1>データでみるdbdキラー</h1>
+   <Marquee>
+			<h2>ヾ(･Д・｀)ﾉ≡３≡３≡３ 　　　　🪓o(｀ω´*)≡３≡３≡３</h2>
+	</Marquee>
   <h2>
   <form action="/itiran">
 		  <label for="item">並び順：</label>
@@ -21,22 +24,6 @@
     
     <input type="submit" value="並び替え">
  </form>
-    
-　<form action="/search">
-    <option value=""></option>
-    <form method="post">
-	    <div>
-		    <label for="name">検索項目</label>
-		    <select name="name">
-		      <option value="">選択してください</option>
-          <% for( let row of data ) { console.log({row});%>
-          <option value="<%= row.id %>">
-            <%= row.name %>
-              </option>
-                <% } %>
-		    </select>
-     <input type="submit" value="検索">
-  </form>
   <table>
     <table border="1">
     <tr>
