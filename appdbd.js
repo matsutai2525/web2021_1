@@ -49,7 +49,7 @@ app.get("/top", (req, res) => {
     })
 })
 
-app.get("/tosi", (req, res) => {
+app.get("/tasu", (req, res) => {
     db.serialize( () => {
         db.all("select id, age from age ;", (error, data) => {
             if( error ) {
